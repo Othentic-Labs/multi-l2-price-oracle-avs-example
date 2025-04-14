@@ -1,6 +1,6 @@
 # 🧮 Simple Price Oracle Multi-L2 AVS
 
-This AVS example demonstrates how to deploy and run a price oracle across multiple L2 chains using the Othentic CLI with Multi-L2 support.
+This AVS example demonstrates how to deploy and run a price oracle across multiple L2 chains using the Othentic CLI with [Multi-L2](https://docs.othentic.xyz/main/avs-framework/explainers/multi-l2s) support.
 
 ![Multi L2](./image.png)
 
@@ -42,27 +42,37 @@ L2_CHAIN=80002,84532
 L2_RPC=80002@https://rpc.ankr.com/polygon_amoy/,84532@https://rpc.ankr.com/base_sepolia/
 ATTESTATION_CENTER_ADDRESS=80002@0x968aA85F556ECf9164D7Dfb00a3b404b4eD6dEc0,84532@0x5F2b17764986Da7Fa0a8E96f81B3C8244116aB3F
 ```
-
+ℹ️ Chain IDs: 80002 = Amoy, 84532 = Base Sepolia
 
 
 ### 3. Update Docker Compose
-Open your `docker-compose.yml` file and update the flags `--l1-chain` and `--l2-chain`
+In `docker-compose.yml`, make sure the `--l1-chain` and `--l2-chain` flags match the networks you deployed to.
+```
+command: [
+  "node", "attester",
+  "--l1-chain", "holesky",
+  "--l2-chain", "amoy,base-sepolia",
+  ...
+]
 
-Ensure these values match the chain names you deployed on.
+```
 
-### 4. Run the Docker Containers & Trigger Task Execution
+### 4. Run AVS & Trigger a Task
 
-ℹ️ `targetChainId` determines which L2 chain your AVS tasks should be submitted to, by default the task is submitted to the first L2 chain in the environmnet configuration.
+Start the containers:
 
 ```bash
 docker-compose up --build
+
+```
+
+Trigger a task to a specific L2 (using targetChainId): `targetChainId` determines which L2 chain your AVS tasks should be submitted to, by default the task is submitted to the first L2 chain in the environmnet configuration.
+
+```bash
 curl -X POST http://localhost:4003/task/execute \
   -H "Content-Type: application/json" \
   -d '{"targetChainId": 84532}'
 ```
-This command will build and run your AVS across the configured L1 and L2 chains.
-
-
 
 ✅ You're Done!
 
