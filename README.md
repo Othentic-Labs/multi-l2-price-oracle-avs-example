@@ -76,7 +76,7 @@ curl -X POST http://localhost:4003/task/execute \
 
 ✅ You're Done!
 
-Your Multi-L2 AVS is now deployed and operational! It will submit tasks to all the configured chains via the TARGET_CHAIN_ID configuration.
+Your Multi-L2 AVS is now deployed and operational! 
 
 For more details, refer to [Othentic Multi-L2 Explainer](https://docs.othentic.xyz/main/avs-framework/explainers/multi-l2s).
 
