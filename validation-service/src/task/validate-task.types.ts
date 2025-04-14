@@ -5,3 +5,8 @@ export interface ValidateRequestDto {
 export interface ValidateResponseDto {
     data: boolean;
 }
+
+export interface ErrorResponseDto {
+    data: boolean;
+    message: string;
+}
