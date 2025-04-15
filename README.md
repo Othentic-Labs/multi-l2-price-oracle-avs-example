@@ -1,6 +1,6 @@
-# 🧮 Simple Price Oracle Multi-L2 AVS
+# 🧮 Multi Chain Price Oracle AVS Example
 
-This AVS example demonstrates how to deploy and run a price oracle across multiple L2 chains using the Othentic CLI with [Multi-L2](https://docs.othentic.xyz/main/avs-framework/explainers/multi-l2s) support.
+This AVS example demonstrates how to deploy and run a price oracle across multiple L2 chains using the Othentic Stack with [Multi-L2](https://docs.othentic.xyz/main/avs-framework/explainers/multi-l2s) support.
 
 ![Multi L2](./image.png)
 
