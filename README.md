@@ -1,6 +1,6 @@
 # 🧮 Multi Chain Price Oracle AVS Example
 
-This AVS example demonstrates how to deploy and run a price oracle across multiple L2 chains using the Othentic Stack with [Multi-L2](https://docs.othentic.xyz/main/avs-framework/explainers/multi-l2s) support.
+This AVS example demonstrates how to deploy and run a price oracle across multiple L2 chains using the Othentic Stack with [Multi-L2](https://docs.othentic.xyz/main/learn/advanced-concepts/multichain) support.
 
 ![Multi L2](./image.png)
 
@@ -19,7 +19,7 @@ othentic-cli --version
 ## ⚙️ Usage
 
 ### 1. Deploy AVS Contracts on Multi-L2
-Use the [quick start](https://docs.othentic.xyz/main/avs-framework/quick-start) guide to set up your AVS. When deploying, include all L2 chain names as per the [Supported chains](https://docs.othentic.xyz/main/avs-framework/supported-networks).
+Use the [quick start](https://docs.othentic.xyz/main/welcome/getting-started/install-othentic-cli) guide to set up your AVS. When deploying, include all L2 chain names as per the [Supported chains](https://docs.othentic.xyz/main/reference/supported-networks).
 
 In the example below, we deploy to `amoy` and `base-Sepolia`:
 
@@ -78,5 +78,5 @@ curl -X POST http://localhost:4003/task/execute \
 
 Your Multi-L2 AVS is now deployed and operational! 
 
-For more details, refer to [Othentic Multi-L2 Explainer](https://docs.othentic.xyz/main/avs-framework/explainers/multi-l2s).
+For more details, refer to [Othentic Multi-L2 Explainer](https://docs.othentic.xyz/main/learn/advanced-concepts/multichain).
 
