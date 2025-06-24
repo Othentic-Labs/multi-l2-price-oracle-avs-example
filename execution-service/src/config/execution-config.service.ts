@@ -16,6 +16,7 @@ export class ExecutionConfigService {
             rpcBaseAddress: process.env.OTHENTIC_CLIENT_RPC_ADDRESS!,
             performer: {
                 privateKey: process.env.PRIVATE_KEY_PERFORMER!,
+                performerAddress: process.env.PERFORMER_ADDRESS!,
             }
         };
     }

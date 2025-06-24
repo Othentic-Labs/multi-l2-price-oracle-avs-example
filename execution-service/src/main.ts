@@ -3,10 +3,12 @@ import { configService } from "./config/execution-config.service";
 import express from "express";
 import cors from "cors";
 import router from "./task/execute-task.controller";
+import { init } from "./utils/mcl";
 
 dotenv.config();
 
-function bootstrap() {
+async function bootstrap() {
+    await init();
     const app = express();
     const port = configService.config.service.port;
 

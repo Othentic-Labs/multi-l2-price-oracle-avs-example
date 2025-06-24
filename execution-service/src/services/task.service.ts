@@ -1,41 +1,44 @@
 import { ethers, Wallet, JsonRpcProvider } from "ethers";
 import { configService } from "../config/execution-config.service";
+import { getSigningKey, sign } from "../utils/mcl";
 
 export class TaskService {
     private readonly privateKey: string;
     private readonly rpcBaseAddress: string;
+    private readonly performerAddress: string;
 
     constructor() {
-        const { privateKey } = configService.config.performer;
+        const { privateKey, performerAddress } = configService.config.performer;
         const { rpcBaseAddress } = configService.config;
         this.privateKey = privateKey;
         this.rpcBaseAddress = rpcBaseAddress;
+        this.performerAddress = performerAddress;
     }
 
     async sendTask(proofOfTask: string, data: string, taskDefinitionId: number, targetChainId?: number): Promise<void> {
-        const wallet: Wallet = new ethers.Wallet(this.privateKey);
-        const performerAddress: string = wallet.address;
 
         const hexData: string = ethers.hexlify(ethers.toUtf8Bytes(data));
         const message: string = ethers.AbiCoder.defaultAbiCoder().encode(
             ["string", "bytes", "address", "uint16"],
-            [proofOfTask, hexData, performerAddress, taskDefinitionId]
+            [proofOfTask, hexData, this.performerAddress, taskDefinitionId]
         );
 
         const messageHash: string = ethers.keccak256(message);
-        const sig: string = wallet.signingKey.sign(messageHash).serialized;
+        const signingKey = getSigningKey(this.privateKey);
+        const sig = sign(signingKey, messageHash);
+        const sigType = 'bls';
 
         const provider: JsonRpcProvider = new ethers.JsonRpcProvider(this.rpcBaseAddress);
         const params: any[] = [
             proofOfTask,
             hexData,
             taskDefinitionId,
-            performerAddress,
+            this.performerAddress,
             sig,
+            sigType,
         ];
     
         if (targetChainId) {
-            params.push("ecdsa");
             params.push(targetChainId);
         }
     
