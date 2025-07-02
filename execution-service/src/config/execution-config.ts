@@ -12,6 +12,7 @@ export interface ExecutionConfig {
 
 export interface IPerformerConfig {
     privateKey: string;
+    performerAddress: string;
 }
 
 export interface IpfsPinataConfig {
