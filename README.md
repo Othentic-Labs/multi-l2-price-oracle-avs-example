@@ -8,11 +8,11 @@ This AVS example demonstrates how to deploy and run a price oracle across multip
 
 ### 1. Othentic CLI Version
 
-Ensure you're using `othentic-cli` version **v1.10.0 or above**, which includes support for Multi-L2 deployments.
+Ensure you're using latest version of `cli` version, which includes support for Multi-L2 deployments.
 
 ```bash
-othentic-cli --version
-# Should output: v1.10.0 or later
+otcli --V
+otnode --V
 ```
 
 
@@ -24,7 +24,7 @@ Use the [quick start](https://docs.othentic.xyz/main/welcome/getting-started/ins
 In the example below, we deploy to `amoy` and `base-Sepolia`:
 
 ```bash
-othentic-cli network deploy \
+otcli network deploy \
   --l1-chain holesky \
   --l2-chain amoy,base-sepolia \
   --rewards-token 0x94373a4919B3240D86eA41593D5eBa789FEF3848 \
@@ -49,7 +49,7 @@ ATTESTATION_CENTER_ADDRESS=80002@0x968aA85F556ECf9164D7Dfb00a3b404b4eD6dEc0,8453
 In `docker-compose.yml`, make sure the `--l1-chain` and `--l2-chain` flags match the networks you deployed to.
 ```
 command: [
-  "node", "attester",
+  "run", "attester",
   "--l1-chain", "holesky",
   "--l2-chain", "amoy,base-sepolia",
   ...
